@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Mau 🎉</title>
+  <title>Mau ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Font -->
@@ -19,36 +19,81 @@
     body {
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       color: #fff;
-      text-align: center;
       min-height: 100vh;
+      text-align: center;
+    }
+
+    /* ---------------- PROPOSAL CARD ---------------- */
+    .proposal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeIn 1.5s ease;
+    }
+
+    .card h1 {
+      font-size: 2.5rem;
+    }
+
+    .card p {
+      margin: 20px 0;
+      font-size: 1.2rem;
+    }
+
+    .card button {
+      padding: 12px 26px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .card button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: #fff;
+    }
+
+    .no {
+      background: #fff;
+      color: #ff4d6d;
+      position: relative;
+    }
+
+    /* ---------------- MAIN SITE (HIDDEN INITIALLY) ---------------- */
+    #mainSite {
+      display: none;
     }
 
     header {
       padding: 80px 20px;
     }
 
-    h1 {
+    h1.main-title {
       font-size: 3.5rem;
       animation: fadeIn 2s ease;
     }
 
-    h2 {
-      margin-bottom: 10px;
-      font-size: 2.2rem;
-    }
-
-    p {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      opacity: 0.95;
+    section {
+      padding: 60px 20px;
     }
 
     .music {
       margin-top: 30px;
-    }
-
-    section {
-      padding: 60px 20px;
     }
 
     .gallery {
@@ -93,46 +138,66 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>🎉 Mau 🎉</h1>
-    <p>Celebration • Joy • Beautiful Moments</p>
-
-    <div class="music">
-      <audio controls autoplay loop>
-        <source src="music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+  <!-- 💌 PROPOSAL SCREEN -->
+  <div class="proposal" id="proposal">
+    <div class="card">
+      <h1>Hey ❤️</h1>
+      <p>Will you date me this Valentine’s Day? 🌹</p>
+      <button class="yes" onclick="sayYes()">Yes 💕</button>
+      <button class="no" id="noBtn">No 😅</button>
     </div>
-  </header>
+  </div>
 
-  <!-- CELEBRATION GALLERY -->
-  <section>
-    <h2>📸 Celebration Moments</h2>
-    <p>Smiles, lights & happiness</p>
+  <!-- 🎉 MAIN CELEBRATION SITE -->
+  <div id="mainSite">
 
-    <div class="gallery">
-      <!-- Option A: Use your own photos -->
-      <!--
-      <img src="celebration1.jpg" alt="Celebration 1">
-      <img src="celebration2.jpg" alt="Celebration 2">
-      <img src="celebration3.jpg" alt="Celebration 3">
-      <img src="celebration4.jpg" alt="Celebration 4">
-      -->
+    <header>
+      <h1 class="main-title">🎉 Mau 🎉</h1>
+      <p>Celebration • Joy • Beautiful Moments</p>
 
-      <!-- Option B: Online celebration photos (works instantly) -->
-      <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176" alt="Celebration">
-      <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce" alt="Party">
-      <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf" alt="Birthday">
-      <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2" alt="Festival">
-    </div>
-  </section>
+      <div class="music">
+        <audio controls autoplay loop>
+          <source src="music.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </header>
 
-  <!-- FOOTER -->
-  <footer>
-    Made with ❤️ for Mau <br>
-    © 2026
-  </footer>
+    <section>
+      <h2>📸 Celebration Moments</h2>
+      <p>Smiles, lights & happiness</p>
+
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176" alt="Celebration">
+        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce" alt="Party">
+        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf" alt="Birthday">
+        <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2" alt="Festival">
+      </div>
+    </section>
+
+    <footer>
+      Made with ❤️ for Mau <br>
+      © 2026
+    </footer>
+
+  </div>
+
+  <!-- 💡 JAVASCRIPT -->
+  <script>
+    function sayYes() {
+      document.getElementById("proposal").style.display = "none";
+      document.getElementById("mainSite").style.display = "block";
+    }
+
+    // Fun "No" button movement 😄
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
 
 </body>
 </html>
+
+
